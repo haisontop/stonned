@@ -1,0 +1,93 @@
+{
+  "name": "Lucky Dip #17",
+  "solPrice": 0.1,
+  "totalPriceValue": 60,
+  "start": "2022-05-22T12:00:00+00:00",
+  "end": "2022-05-22T20:30:00+00:00",
+  "payTokens": [
+    "G9tt98aYSznRk7jWsfuz9FnTdokxS6Brohdo9hSmjTRB",
+    "7ScYHk4VDgSRnQngAUtQk4Eyf7fGat8P4wXq6e2dkzLj"
+  ],
+  "prices": [
+    {
+       "mint":"C1DuJsVUdukcjhpi7rfi5ypL9izDh4VCJAsfUVwmTE3W",
+       "amount":1
+    },
+    {
+       "mint":"FUsYLMoUEv5EdeWbmrPZZGNebr6RURQqNkwhh9ERvNiH",
+       "amount":1
+    },
+    {
+       "mint":"Bt5v2GbJAAUjxUhyQt3JduNauV3DXycdStFbXEjFmhan",
+       "amount":1
+    },
+    {
+       "mint":"J75WEiAwXWj65GfMSFLk3HnbHP24rV2JM6iZ2i2ejj1L",
+       "amount":1
+    },
+    {
+       "mint":"2KxQDcKbnkxTvAt8FdFqsg6aeJeuLnKkCPYp1W1GCrDM",
+       "amount":1
+    },
+    {
+       "mint":"7cSeCzLzEvpcNbaFCSPDr1XDSq9Hs5jvuoLCvwKsBBdL",
+       "amount":1
+    },
+    {
+       "mint":"2Pu915emwmv3b976p6pA91EeVZYFdPUkNVnFRbfDh6Be",
+       "amount":1
+    },
+    {
+       "mint":"8tXPuzEGw9NJzNpJK6BqeJU319v4JzNCAtkJsVLxiAAL",
+       "amount":1
+    },
+    {
+       "mint":"GjFQEmwLzJNvV9EdMSsHLtvG2dXecKyCGBoUssB6Ydy4",
+       "amount":1
+    },
+    {
+       "mint":"2Rp1XMAuXmY84je6cjjXEGen4GSzMq1djx9mjFdKZCrr",
+       "amount":1
+    },
+    {
+       "mint":"DpDXGgpmsnpv3Tbrf1fYygujFac627gsckk6FWbtCcaM",
+       "amount":1
+    },
+    {
+       "mint":"GVvDM8MfXWRvL9uqGfKhmLEaC8m5oJsLUmUhhgLH1dpT",
+       "amount":1
+    },
+    {
+       "mint":"DaeNj9BvkFCxmsJK2hDGu4DAtwUHCKZRFFPWcyqRxu24",
+       "amount":1
+    },
+    {
+       "mint":"zr7qw4eEtoHvM61otYzKkmvrD4JzTizmgXvvKZCzBHH",
+       "amount":1
+    },
+    {
+       "mint":"5hR6ca7Xuu7BcRS5uXyR7muqhLPzbdqTfCa6pb9veDPo",
+       "amount":1
+    },
+    {
+       "mint":"3tPFxy1NYuDvTMjPVfRBerdTmyuXkZ1rYxETpdqhDD6Y",
+       "amount":1
+    },
+    {
+       "mint":"4nMyJudNZTBcfczwrgk4xd1ZffPtbj2w5YpCZzuvwfXR",
+       "amount":1
+    },
+    {
+       "mint":"6nunt9VwfC8VmjXx4d3m6s7sE6SLzweRsJ84XEJi37r7",
+       "amount":1
+    },
+    {
+       "mint":"5y1vbMKSwL3NDNAi7q9fjncdqCB1iUfvwsz2nfVgDkbG",
+       "amount":1
+    },
+    {
+       "mint":"B9KXGt4NtUmjqXvhbCLgD2Eg6KhGytHXq3gHfs14j4hB",
+       "amount":1
+    }
+ ]
+}

@@ -1,0 +1,22 @@
+[package]
+name = "evolution"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "evolution"
+
+[features]
+no-entrypoint = []
+no-idl = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "=0.18.2"
+anchor-spl = "=0.18.2"
+solana-program = "=1.8.5"
+metaplex-token-metadata = { version = "0.0.1", features = ["no-entrypoint"] } 
+metaplex= { version = "0.0.1", features = ["no-entrypoint"] } 

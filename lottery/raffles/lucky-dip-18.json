@@ -1,0 +1,93 @@
+{
+  "name": "Lucky Dip #18",
+  "solPrice": 0.1,
+  "totalPriceValue": 60,
+  "start": "2022-05-22T12:00:00+00:00",
+  "end": "2022-05-23T12:00:00+00:00",
+  "payTokens": [
+    "G9tt98aYSznRk7jWsfuz9FnTdokxS6Brohdo9hSmjTRB",
+    "7ScYHk4VDgSRnQngAUtQk4Eyf7fGat8P4wXq6e2dkzLj"
+  ],
+  "prices": [
+   {
+      "mint": "EgEAShGNtVRw6Uuawingfy13JzmQCW1w27ienhVQwc5",
+      "amount": 1
+   },
+   {
+      "mint": "BKeYJa8XzBAsYtx95DBp9vD2FhTWxhV24BFozQa2xrBJ",
+      "amount": 1
+   },
+   {
+      "mint": "rwwzuZrEyCcc3LRhP6mk3znEHWk7qL1fznQVZvwBsju",
+      "amount": 1
+   },
+   {
+      "mint": "HXpvLR3JV1woiHkVhaerhxz8GSaLbU8GNHrFbDjc5Gmh",
+      "amount": 1
+   },
+   {
+      "mint": "4fBTNvpgLf6yNqBViH8oQb9nciH3WXy9tquqpaL2QNdX",
+      "amount": 1
+   },
+   {
+      "mint": "4HSvaCXUiHw5RxdH2F7f3boAK4fPo2NtZpkzA5U9kYoF",
+      "amount": 1
+   },
+   {
+      "mint": "J3wNk4aRUWJYX6pTXM1ewxpziwHKYdEJYqcx6mPXmq5c",
+      "amount": 1
+   },
+   {
+      "mint": "GrbCg7b7S3EUvj6TLU2S6Aiaxd5CZqWrpNFc63jPrtcH",
+      "amount": 1
+   },
+   {
+      "mint": "FuZ6e2nkkJv6gvviwJRgPjEA9gRkHy28TkKbBGVFMGiF",
+      "amount": 1
+   },
+   {
+      "mint": "5vKTz1QpJddNkpGkWHaL7DjTzw9tQ9R9eLfh4JCUk8DJ",
+      "amount": 1
+   },
+   {
+      "mint": "99XcLuWHFSxbSGX6u5AR13RQaPPBp13oXygz6HDhJP4h",
+      "amount": 1
+   },
+   {
+      "mint": "GPqWxAX8GEuEtwpbB8WK3FKScuHWyrXGghhqooi28BtM",
+      "amount": 1
+   },
+   {
+      "mint": "HApxbeuyMJMXUpevkNzoAydjJs3sQJTRA7S8TAUTnncP",
+      "amount": 1
+   },
+   {
+      "mint": "FBZ1EfuTh6wPWqqE5Eru5JsHKsozJFtB6F5LcjaYvPf9",
+      "amount": 1
+   },
+   {
+      "mint": "6RJaH1RY3EJFTipvDV5AAqF4dhCYci7Scit1GrYueKdY",
+      "amount": 1
+   },
+   {
+      "mint": "EBWGnNrJ8AQP8u8rukBNKDjhiqnvybkzAnJVHhUH4Cjy",
+      "amount": 1
+   },
+   {
+      "mint": "GQQ4CUwSL4SXekPebqGyAdDrumKHMuCtuGegYUiYGCBs",
+      "amount": 1
+   },
+   {
+      "mint": "99eC7h69oK5KfDpKLMBwQq5Ta6kZBXMLHHeU9d4BveG1",
+      "amount": 1
+   },
+   {
+      "mint": "Hrjg4TaGgFxM3sH8BsMVwH8BwDSfBT95fYZRdvgZENUi",
+      "amount": 1
+   },
+   {
+      "mint": "6BAbfBH3PAZQ4aLQXSBnizk5M1Wk4qqteqZySxHUymn8",
+      "amount": 1
+   }
+]
+}

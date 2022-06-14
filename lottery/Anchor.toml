@@ -1,0 +1,20 @@
+[programs.localnet]
+lottery = "WJd4Vj59h7Za3Kn8kN8HwbnAhk9UByn6UQpoJkrdFhR"
+
+[registry]
+url = "localnet"
+
+[provider]
+cluster = "localnet"
+wallet = "/Users/matthiasschaider/.config/solana/id.json"
+
+[provider.mainnet]
+cluster = "https://late-falling-firefly.solana-mainnet.quiknode.pro/812b7e0ab8d2b7589b67bf72b7f1295563c2ce97/"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+cli = "solana-test-validator && yarn run ts-node tests/cli.ts"
+create = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 ./scripts/createLottery.ts"
+raffle = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 ./scripts/raffleLottery.ts"
+unraffle = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 ./scripts/unraffleLottery.ts"
+delete = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 ./scripts/deleteLottery.ts"

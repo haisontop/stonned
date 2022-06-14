@@ -1,0 +1,69 @@
+{
+  "name": "discord.ts-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/client.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./build/bot/src/app.js",
+    "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' src/app.ts",
+    "dev1": "ts-node-dev src/app.ts",
+    "cli": "ENV=production ts-node src/cli.ts",
+    "migrate": "npx prisma migrate dev --name init",
+    "db:migrate-deploy": "npx prisma migrate deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceanroleplay/discord.ts-example.git"
+  },
+  "keywords": [
+    "discordx",
+    "discord.ts",
+    "discord.js",
+    "bot",
+    "discord",
+    "typescript"
+  ],
+  "author": "Indian Ocean Roleplay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oceanroleplay/discord.ts-example/issues"
+  },
+  "homepage": "https://github.com/oceanroleplay/discord.ts-example#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/json2csv": "^5.0.3",
+    "@types/uuid": "^8.3.1",
+    "prettier": "^2.4.1",
+    "prisma": "^3.2.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@discordx/utilities": "^1.4.2",
+    "@metaplex/js": "^4.5.0",
+    "@prisma/client": "^3.2.1",
+    "@project-serum/anchor": "^0.19.0",
+    "@solana/spl-token": "^0.1.8",
+    "@solana/web3.js": "^1.29.2",
+    "@types/nodemon": "^1.19.1",
+    "async-batch": "^1.1.2",
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
+    "commander": "^8.3.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "date-fns": "^2.25.0",
+    "discord.js": "^13.2.0",
+    "discordx": "^6.1.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "hcaptcha": "^0.1.0",
+    "json2csv": "^5.0.6",
+    "reflect-metadata": "^0.1.13",
+    "uuid": "^8.3.2",
+    "weighted": "^1.0.0",
+    "zod": "^3.11.6"
+  }
+}

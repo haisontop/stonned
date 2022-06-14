@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE `Project` ADD COLUMN `identifier` VARCHAR(191) NOT NULL DEFAULT '',
+    ADD COLUMN `nftCreator` VARCHAR(191) NOT NULL DEFAULT '',
+    ADD COLUMN `preMintWallet` VARCHAR(191) NULL;

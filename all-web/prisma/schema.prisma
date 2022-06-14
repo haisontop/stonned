@@ -1,0 +1,415 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+  binaryTargets   = ["native"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model WhitelistUser {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  address   String   @unique
+  reserved  Int
+}
+
+// on the platform
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt // updating requires signing something
+
+  username String? @unique
+  email    String? @unique
+
+  profilePictureUrl String?
+
+  role UserRole @default(NORMAL)
+
+  twitterUrl String?
+  discordId  String?
+
+  solanaAddress       String  @unique
+  solanaBurnerAddress String? @unique
+
+  // notifications
+  notifyNewProject   Boolean @default(false)
+  notifyMintStart    Boolean @default(true)
+  notifyNewWhitelist Boolean @default(true)
+
+  teamMemberOf    ProjectTeamMember[]
+  createdProjects Project[]
+
+  // project connected
+  votes            Vote[]
+  comments         Comment[]
+  favorites        Favorite[]
+  mintTransactions MintTransaction[]
+  whitelistSpots   WhitelistSpot[]
+  mintLocks        MintLock[]
+
+  likeComments    Comment[] @relation("likeComment")
+  dislikeComments Comment[] @relation("dislikeComment")
+  Opinion         Opinion[]
+}
+
+enum UserRole {
+  NORMAL
+  AMBASSADOR // higher rate for affiliate
+  ANALYST // for people who can post expert opinions
+  REVIEWER // for partner who review e.g. RadRugs
+  CREATOR // if you create a project
+  TEAM
+  ADMIN
+}
+
+model FeaturedProjectSpot {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
+  startAt   DateTime
+  endAt     DateTime @map("endArt")
+  isActive  Boolean
+}
+
+enum HeaderType {
+  GALLERY
+  BANNER
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  candyMachineId String?
+
+  preMintWallet String?
+  identifier    String  @default("")
+  nftCreator    String  @default("")
+
+  fundsWallet String @default("")
+
+  // info
+  projectUrlIdentifier String  @unique // can be projectName lowercase, spaces replaced with underscores
+  projectName          String
+  projectDescription   String  @db.VarChar(1000)
+  showOnOverview       Boolean @default(true)
+
+  creatorName String?
+  creator     User?   @relation(fields: [creatorId], references: [id], onUpdate: NoAction)
+  creatorId   String?
+
+  headerType        HeaderType   @default(GALLERY)
+  mobileBannerUrl   String // 1920x860, mobile
+  desktoBannerUrl   String // 1920x690, desktop
+  profilePictureUrl String // 1x1, title pic of their art, normally 1 NFT
+  logoUrl           String? // 1x1, project logo
+  promoVideo        String?
+  galleryUrls       GalleryUrl[]
+
+  totalSupply              Int
+  availablePercentageInSpl Float?
+
+  isIncubator    Boolean?
+  isSuperCreator Boolean?
+
+  roadmapPeriods ProjectRoadmapPeriod[]
+  teamMembers    ProjectTeamMember[]
+  utilities      ProjectUtility[]
+  projectReviews ProjectReview[]
+  features       FeaturedProjectSpot[]
+  mintLocks      MintLock[]
+  mintMetas      MintMeta[]
+
+  // mint info
+  publicMintStart      DateTime
+  publicMintPrice      Float
+  mintEnd              DateTime?
+  reservedPublicSupply Int // 0 if non reserved, then showing totalSupply - already minted
+  mintingPeriods       MintingPeriod[]
+
+  // socials
+  twitterUrl   String?
+  instagramUrl String?
+  discordUrl   String?
+  telegramUrl  String?
+  websiteUrl   String?
+
+  // temporary checks
+  isVerified Boolean @default(false)
+  isDoxxed   Boolean @default(false)
+
+  alreadyMinted Int?
+
+  // user connected
+  votes     Vote[]
+  comments  Comment[]
+  favorites Favorite[]
+  Opinion   Opinion[]
+}
+
+model GalleryUrl {
+  id            String  @id @default(cuid())
+  project       Project @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  projectId     String
+  url           String
+  usedForHeader Boolean @default(false)
+}
+
+model MintingPeriod {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  periodName  String  @map("whitelistName") // Community Whitelist / Public Mint
+  description String? @map("whitelistDescription")
+
+  startAt         DateTime
+  endAt           DateTime
+  supplyAvailable Int
+  price           Float
+
+  maxPerWallet Int?
+  isWhitelist  Boolean
+
+  project   Project @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  projectId String
+
+  pricings        Pricing[]
+  totalPriceInSol Float
+
+  mintTransactions MintTransaction[]
+  paymentOptions   PaymentOption[]
+  whitelistSpots   WhitelistSpot[]
+
+
+  // applicableAddresses String[] => how to setup the connection?
+  // use-cases for whitelist
+  // make whitelist raffles
+  // be able to insert a csv file of addresses
+  @@map("WhitelistPeriod")
+}
+
+model TransactionCheck {
+  id          String @id @default(cuid())
+  transaction String @db.VarChar(2500)
+}
+
+model WhitelistSpot {
+
+  userId String @map("user")
+  user   User   @relation(fields: [userId], references: [id], onUpdate: NoAction)
+
+
+  amount    Int
+  hasMinted Int @default(0)
+
+  mintingPeriod   MintingPeriod @relation(fields: [mintingPeriodId], references: [id])
+  mintingPeriodId String        @map("whitelistPeriodId")
+  @@id([mintingPeriodId, userId])
+}
+
+model MintLock {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onUpdate: NoAction)
+}
+
+model MintTransaction {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  tx     String?
+  userId String
+  user   User    @relation(fields: [userId], references: [id], onUpdate: NoAction)
+
+  confirmed Boolean @default(false)
+
+  refunded Boolean @default(false)
+
+  paymentOption   PaymentOption @relation(fields: [paymentOptionId], references: [id])
+  paymentOptionId String
+
+  mintPeriod   MintingPeriod @relation(fields: [mintPeriodId], references: [id])
+  mintPeriodId String
+
+  metadataLink String?
+}
+
+model MintMeta {
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  id           Int
+  metadataLink String
+  metadata     String    @default("") @db.VarChar(2000)
+  lastUsed     DateTime?
+
+
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
+
+  alreadyMinted Boolean @default(false)
+
+
+  @@id([id, projectId])
+}
+
+model PaymentOption {
+  id                String            @id @default(cuid())
+  pricings          Pricing[]
+  maxMintPercentage Float?
+  mintTransactions  MintTransaction[]
+
+  mintingPeriod   MintingPeriod @relation(fields: [mintingPeriodId], references: [id])
+  mintingPeriodId String
+}
+
+model Pricing {
+  id          String  @id @default(cuid())
+  token       String?
+  amount      Float?
+  amountInSol Float?
+
+  currency String  @default("SOL")
+  isSol    Boolean
+
+  paymentOption   PaymentOption @relation(fields: [paymentOptionId], references: [id])
+  paymentOptionId String        @default("")
+
+  whitelistPeriod   MintingPeriod @relation(fields: [whitelistPeriodId], references: [id])
+  whitelistPeriodId String
+}
+
+enum ProjectBadges {
+  VERIFIED
+  DOXXED
+}
+
+model ProjectUtility {
+  id String @id @default(cuid())
+
+  project   Project @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  projectId String
+
+  utilityIconUrl String? @map("imageUrl")
+  headline       String
+  description    String  @db.VarChar(500)
+}
+
+model ProjectRoadmapPeriod {
+  id         String @id @default(cuid())
+  periodName String
+
+  project   Project @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  projectId String
+
+  roadmapItems ProjectRoadmapItem[]
+}
+
+model ProjectRoadmapItem {
+  id          String @id @default(cuid())
+  headline    String
+  description String @db.VarChar(300)
+
+  roadmapPeriod   ProjectRoadmapPeriod @relation(fields: [roadmapPeriodId], references: [id])
+  roadmapPeriodId String
+}
+
+model ProjectTeamMember {
+  id String @id @default(cuid())
+
+  user   User?   @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  userId String?
+
+  project   Project @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  projectId String
+
+  imageUrl    String?
+  twitterUrl  String?
+  linkedInUrl String?
+  memberName  String?
+  description String? @db.VarChar(500)
+}
+
+model ProjectReview {
+  id String @id @default(cuid())
+
+  reviewer String
+  review   String @db.VarChar(1000)
+  score    Int
+
+  project   Project @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  projectId String
+}
+
+// User <> Project relation
+
+model Vote {
+  isUpvote  Boolean
+  project   Project @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  projectId String
+  user      User    @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  userId    String
+
+  @@unique([userId, projectId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  message   String   @db.VarChar(200)
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
+  user      User     @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  userId    String
+  createdAt DateTime @default(now())
+  likes     User[]   @relation("likeComment")
+  disLikes  User[]   @relation("dislikeComment")
+}
+
+model Favorite {
+  project   Project @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  projectId String
+  user      User    @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  userId    String
+
+  @@unique([userId, projectId])
+}
+
+model Banlist {
+  mintAddress String @unique
+}
+
+model Opinion {
+  id        String        @id @default(cuid())
+  content   String        @db.LongText
+  star      Float?
+  level     OpinionLevel?
+  project   Project       @relation(fields: [projectId], references: [id])
+  projectId String
+  user      User          @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  userId    String
+  createdAt DateTime      @default(now())
+}
+
+enum OpinionLevel {
+  RECOMMENDED
+  CAUTION
+}

@@ -1,0 +1,17 @@
+{
+	"name": "Lucky Dip #7",
+	"solPrice": 0.1,
+	"totalPriceValue": 25,
+	"start": "2022-04-29T18:00:00+00:00",
+	"end": "2022-04-31T12:00:00+00:00",
+	"payTokens": [
+		"G9tt98aYSznRk7jWsfuz9FnTdokxS6Brohdo9hSmjTRB",
+		"7ScYHk4VDgSRnQngAUtQk4Eyf7fGat8P4wXq6e2dkzLj"
+	],
+	"prices": [
+		{
+			"mint": "4bajCpZVkEPFSScymYPuZXt9ywVCdPCtAUnE83a32iyJ",
+			"amount": 1
+		}
+	]
+}

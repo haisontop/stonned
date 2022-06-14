@@ -1,0 +1,1 @@
+metaboss -r https://late-falling-firefly.solana-mainnet.quiknode.pro/0b722649340a17f9b0237e79998749727f25a65f/ snapshot mints --candy-machine-id 912nWfxq9dSpjjgsx6Nda4yjSy2DSkwemHtjQc1XRFJL --v2

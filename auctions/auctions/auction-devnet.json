@@ -1,0 +1,13 @@
+{
+  "name": "Auctione #1",
+  "start": "2022-04-01T11:00:00+00:00",
+  "end": "2022-05-02T12:47:00+00:00",
+  "startBid": 5,
+  "minBidIncrease": 2.5,
+  "isBidMintSol": false,
+  "currency": "$PUFF",
+  "bidMint": "8crBEjMoyGmUA4jsus4oNbzmS9skroExSVzhroidjaA6",
+  "prizeMint": "2ntd7tN6dw6V1Z8P3WgK9rQEuxpx7mCF1sMy9ieX8QKF",
+  "totalPriceValue": 120,
+  "finishExtensionTimeSec": 300
+}

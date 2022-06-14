@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `MintMeta` ADD COLUMN `lastUsed` DATETIME(3) NULL,
+    ADD COLUMN `metadata` VARCHAR(2000) NOT NULL DEFAULT '';

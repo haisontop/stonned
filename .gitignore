@@ -1,0 +1,39 @@
+.vercel
+node_modules
+
+
+#anchor
+.anchor
+*/programs/*/target
+*/target/*
+!*/target/types
+!*/target/idl
+
+
+.next
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env
+.env.prod
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
+!.env.dev
+
+# vercel
+.vercel
+
+*/cli/assets
+# Sentry
+.sentryclirc
+
+# Sentry
+.sentryclirc
+
+# Sentry
+.sentryclirc

@@ -1,0 +1,9 @@
+.anchor
+.DS_Store
+**/*.rs.bk
+node_modules
+test-ledger
+programs/auctions/target
+target/*
+!target/types
+!target/idl

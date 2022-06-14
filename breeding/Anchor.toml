@@ -1,0 +1,21 @@
+[programs.localnet]
+breeding = "GvZH4TH7tx3h5wDmUqA6ud2L79vSphUfBp7oufva6nZk"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "localnet"
+wallet = "~/config/solana/nuked.json"
+
+[provider.localnet]
+cluster = "localnet"
+wallet = "~/config/solana/nuked.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/breeding.spec.ts"
+testCm = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/candymachine.spec.ts"
+createConfig = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 scripts/createConfig.ts"
+
+[features]
+anchor-debug = ["anchor-syn/anchor-debug"]

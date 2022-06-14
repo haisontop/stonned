@@ -1,0 +1,3 @@
+export const MAIN_CONTAINER_MAX_WIDTH = '82rem'
+export const MAIN_LAUNCH_CONTAINER_MAX_WIDTH = '71rem'
+export const MAIN_PROJECT_CONTAINER_MAX_WIDTH = '67.375rem'

@@ -1,0 +1,65 @@
+{
+  "name": "Lucky Dip #11",
+  "solPrice": 0.1,
+  "totalPriceValue": 42,
+  "start": "2022-05-17T22:52:00+00:00",
+  "end": "2022-05-19T20:00:00+00:00",
+  "payTokens": [
+    "G9tt98aYSznRk7jWsfuz9FnTdokxS6Brohdo9hSmjTRB",
+    "7ScYHk4VDgSRnQngAUtQk4Eyf7fGat8P4wXq6e2dkzLj"
+  ],
+  "prices": [
+    {
+      "mint": "9J9PpdLnR9be1fMEutcFgZGuZH2Us8xbeBMBmtk5N71K",
+      "amount": 1
+    },
+    {
+      "mint": "DUBoax2cakXU9TAN9DkXqyBfKAtw3faXLsyxPXWgCDgz",
+      "amount": 1
+    },
+    {
+      "mint": "DGLzw5rzx1FgEVtV2m4h2a1Z5rzYRJhyRJDp7Pmysuem",
+      "amount": 1
+    },
+    {
+      "mint": "AXLhC4qgTJn95uRCuSp1i6qdBUBit86oDkyVXtsEjGr1",
+      "amount": 1
+    },
+    {
+      "mint": "H4FoupmmoS8fk13jDrnEWsVuZbCZFYeNYDUi6PMFRF3q",
+      "amount": 1
+    },
+    {
+      "mint": "HDYJq5RfHPiF5JqygtAfTqCoYATui1QicL2j3HSFNBbk",
+      "amount": 1
+    },
+    {
+      "mint": "C48QL92svehd61UtkiiM6NZKmr9mwWmSXfTKSZtuy2GY",
+      "amount": 1
+    },
+    {
+      "mint": "HwpmqoYtfMbrwseR9S3exo39tm1smUHtDcgDMgQVbvni",
+      "amount": 1
+    },
+    {
+      "mint": "Ecp11okkHbsnWprpWs65FuPEvkiHub8dnkpHZVma4GwT",
+      "amount": 1
+    },
+    {
+      "mint": "9ASbVfGCVtwtUac6LGvD1cwH7rkPd2EJkBrrU5n1i66A",
+      "amount": 1
+    },
+    {
+      "mint": "FtQ8mEo4MeZAWHcRCm35m37yGxbmSpcWyfuDcxMvjuMG",
+      "amount": 1
+    },
+    {
+      "mint": "GfR4aTyns9Vr4a9gFWBarexyy8mUntstTRLuxUkcsrLU",
+      "amount": 1
+    },
+    {
+      "mint": "oeZc5JNNVWuB5FGDmXxE2LgZnjnnw1nuDD3DhMhHmHT",
+      "amount": 1
+    }
+  ]
+}

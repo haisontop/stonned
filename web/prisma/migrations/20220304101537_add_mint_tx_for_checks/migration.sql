@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `RescueToMint` ADD COLUMN `mintTx` VARCHAR(191) NOT NULL DEFAULT '',
+    MODIFY `mint` VARCHAR(191) NULL;

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `BoxOrder` ADD COLUMN `product` VARCHAR(191) NOT NULL DEFAULT '',
+    ADD COLUMN `productName` VARCHAR(191) NOT NULL DEFAULT '';

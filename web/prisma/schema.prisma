@@ -1,0 +1,220 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+  binaryTargets = ["native"]
+}
+
+datasource db {
+    provider             = "mysql"
+    url                  = env("DATABASE_URL")
+    
+    referentialIntegrity = "prisma"
+}
+
+model RescueMintError {
+  id     Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  user String
+  rescuePubKey String @default("")
+  resolved Boolean @default(false)
+  revealTx String?
+  mintTx String?
+}
+
+model RescueToMint {
+  id     Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  user String
+  rescuePubKey String @unique
+  mint String?
+  mintTx String @default("")
+}
+
+model WhitelistUser {
+  id     Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  address String @unique
+  reserved Int
+}
+
+
+model CbdProduct {
+  id     Int     @id @default(autoincrement())
+  name String
+  nft String
+
+  order CbdOrder @relation(fields: [orderId], references: [id])
+  orderId Int
+}
+
+
+model CbdUser {
+  id     Int     @id @default(autoincrement())
+  wallet String @unique 
+  firstname String  
+  lastname String
+  email String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  street String
+  city String
+  zip String
+  country String
+  state String @default("")
+
+  orders CbdOrder[]
+}
+
+enum OrderStatus {
+  Confirmed
+  Shipped
+}
+
+
+model CbdOrder {
+  id Int  @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  transferNftTx String
+  note String
+
+  products CbdProduct[]
+
+  user CbdUser @relation(fields: [userId], references: [id])
+  userId Int
+
+  txFailed Boolean @default(false)
+
+  status OrderStatus @default(Confirmed)
+  shippingLink String?
+}
+
+model FailedCbdOrder {
+  id Int  @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  wallet String @unique 
+  tx String
+  data String @db.VarChar(2000)
+}
+
+
+
+
+model BoxUser {
+  id     Int     @id @default(autoincrement())
+  wallet String @unique 
+  firstname String  
+  lastname String
+  email String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  street String
+  city String
+  zip String
+  country String
+
+  orders BoxOrder[]
+}
+
+model BoxOrder {
+  id Int  @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  size String
+  transferNftTx String
+  mint String
+  note String
+  productName String @default("")
+  product String @default("")
+  image String @default("")
+
+  user BoxUser @relation(fields: [userId], references: [id])
+  userId Int
+
+  txFailed Boolean @default(false)
+}
+
+model FailedBoxOrder {
+  id Int  @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  wallet String @unique 
+  tx String
+  test String?
+  testo String?
+}
+
+model TokenMetadata {
+  id String  @id @default(cuid())
+  mint String @unique
+  data String @db.VarChar(2000)
+}
+
+model MintCreator {
+  mint String
+  creator String 
+  @@id([mint, creator])
+}
+
+model LaGuestlistUser {
+  id String @id @default(cuid())
+  wallet String @unique
+  entries LaGuestlistEntry[]
+}
+
+model LaGuestlistEntry {
+  id String @id @default(cuid())
+  name String
+  user LaGuestlistUser  @relation(fields: [userId], references: [id])
+  userId String 
+}
+
+model AlreadyMinted {
+  id Int  @id @default(autoincrement())
+  nft String @unique
+  user String
+  tx String 
+  newNft String 
+}
+
+model AwakeningMeta {
+  id Int 
+  nft String 
+  nftName String
+  newMetadataLink String
+  newMetadata String
+  creator String
+
+
+  @@id([id, creator])
+}
+
+model AwakeningUpdateModel {
+  id Int @id @default(autoincrement())
+  nft String @unique
+  nftName String
+  newMetadata String
+}
+
+model AwakeningBotModel {
+  id Int
+  nft String
+  nftName String
+  creator String
+
+  newMP4Link String
+  hasBeenPosted Boolean @default(false)
+  hasBeenUpdated Boolean @default(false)
+
+  @@id([id, creator])
+}

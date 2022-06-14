@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `MintAccess` ADD COLUMN `mintId` VARCHAR(191) NOT NULL DEFAULT '';

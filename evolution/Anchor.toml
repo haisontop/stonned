@@ -1,0 +1,16 @@
+[programs.localnet]
+evolution = "7H4tPzTXCdL4uiEZZLpjSeWfpVNnv7LHSJsaqCinjiw6"
+
+[registry]
+url = "https://psytrbhymqlkfrhudd.dev.genesysgo.net:8899/"
+
+[provider]
+cluster = "localnet"
+#wallet = "~/config/solana/sac-evolution.json"
+wallet = "~/config/solana/sac-treasury.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+
+[features]
+anchor-debug = ["anchor-syn/anchor-debug"]

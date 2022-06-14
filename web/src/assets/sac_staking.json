@@ -1,0 +1,343 @@
+{
+  "version": "0.0.0",
+  "name": "sac_staking",
+  "instructions": [
+    {
+      "name": "initProgram",
+      "accounts": [
+        {
+          "name": "programPuffTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "puffToken",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "programPuffTokenAccountBump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "startStaking",
+      "accounts": [
+        {
+          "name": "stakeAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "wallet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "vaultTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "stakeAccountBump",
+          "type": "u8"
+        },
+        {
+          "name": "vaultTokenAccountBump",
+          "type": "u8"
+        },
+        {
+          "name": "authority",
+          "type": "publicKey"
+        },
+        {
+          "name": "token",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "accounts": [
+        {
+          "name": "stakeAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "vaultTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "puffToken",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "programPuffTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userPuffTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "programPuffTokenAccountBump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "unstake",
+      "accounts": [
+        {
+          "name": "stakeAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "vaultTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "puffToken",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "programPuffTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userPuffTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "programPuffTokenAccountBump",
+          "type": "u8"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "StakeAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "token",
+            "type": "publicKey"
+          },
+          {
+            "name": "startStaking",
+            "type": "i64"
+          },
+          {
+            "name": "lastWithdraw",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "vaultTokenAccountBump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "OfficerBumps",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "srm",
+            "type": "u8"
+          },
+          {
+            "name": "usdc",
+            "type": "u8"
+          },
+          {
+            "name": "stake",
+            "type": "u8"
+          },
+          {
+            "name": "treasury",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CustomError",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Custom",
+            "fields": [
+              "u32"
+            ]
+          },
+          {
+            "name": "WrongMint"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 300,
+      "name": "WrongMint",
+      "msg": "NFT must be from stoned ape crew"
+    }
+  ],
+  "metadata": {
+    "address": "Da4x4bLzmTWAXqhbESCMZGXB2UNK13mqZW32CrXPSrE1"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Marie Curie",
+  "start": "2022-05-01T11:00:00+00:00",
+  "end": "2022-05-05T19:00:00+00:00",
+  "startBid": 500,
+  "minBidIncrease": 100,
+  "isBidMintSol": false,
+  "currency": "$PUFF",
+  "bidMint": "G9tt98aYSznRk7jWsfuz9FnTdokxS6Brohdo9hSmjTRB",
+  "prizeMint": "9w2a57gV3BeYm3TPfTuFimRtVyy4XqSoEBgojE1mrvo2",
+  "totalPriceValue": 300,
+  "finishExtensionTimeSec": 300
+}

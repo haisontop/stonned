@@ -1,0 +1,29 @@
+{
+	"name": "Lucky Dip #2",
+	"solPrice": 0.1,
+	"totalPriceValue": 25,
+	"start": "2022-04-10T15:00:00+00:00",
+	"end": "2022-04-11T08:00:00+00:00",
+	"payTokens": [
+		"G9tt98aYSznRk7jWsfuz9FnTdokxS6Brohdo9hSmjTRB",
+		"7ScYHk4VDgSRnQngAUtQk4Eyf7fGat8P4wXq6e2dkzLj"
+	],
+	"prices": [
+		{
+			"mint": "AyLbSku8btKFMVyRUfgptmEyTMv7Y4dYLfTfCKQsSvrL",
+			"amount": 1
+		},
+		{
+			"mint": "3nsoP3XwBsVvy6y2Lob5QaMNkakSYMnFVh3sjFssKthD",
+			"amount": 1
+		},
+		{
+			"mint": "E2EYLzD3EG6hqfMYrSGQ6Xd8V36odyprK85ce4ehXhTE",
+			"amount": 1
+		},
+		{
+			"mint": "CYY5Sm6LkWsVgFHjBACz7tTRfBV7qgqR6yuG1nugYqgP",
+			"amount": 1
+		}
+	]
+}

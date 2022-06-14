@@ -1,0 +1,17 @@
+{
+	"name": "Lucky Dip #3 - Degen Ape",
+	"solPrice": 0.1,
+	"totalPriceValue": 100,
+	"start": "2022-04-19T13:00:00+00:00",
+	"end": "2022-04-20T15:00:00+00:00",
+	"payTokens": [
+		"G9tt98aYSznRk7jWsfuz9FnTdokxS6Brohdo9hSmjTRB",
+		"7ScYHk4VDgSRnQngAUtQk4Eyf7fGat8P4wXq6e2dkzLj"
+	],
+	"prices": [
+		{
+			"mint": "nnsyke25QR3yJAmAuQhjESEHHjs93iyUqKaKPhGWtQh",
+			"amount": 1
+		}
+	]
+}

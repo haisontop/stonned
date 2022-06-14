@@ -1,0 +1,93 @@
+{
+	"name": "Lucky Dip Prime",
+	"solPrice": 0.1,
+	"totalPriceValue": 500,
+	"start": "2022-04-07T18:00:00+00:00",
+	"end": "2022-04-10T14:00:00+00:00",
+	"payTokens": [
+		"G9tt98aYSznRk7jWsfuz9FnTdokxS6Brohdo9hSmjTRB",
+		"7ScYHk4VDgSRnQngAUtQk4Eyf7fGat8P4wXq6e2dkzLj"
+	],
+	"prices": [
+		{
+			"mint": "34bUv7fSjwNR7YJHQpBjQ8HkDWKrFp1qiSPijXkZbMRW",
+			"amount": 1
+		},
+		{
+			"mint": "GEa8WCMfWQfhdTW5gbTXNPbUCtEDBhcSJpjhiPrfxTg3",
+			"amount": 1
+		},
+		{
+			"mint": "Y7kWhXdvB95ECuWhvZCz5v3qCmeuJzhhSTEdX6esank",
+			"amount": 1
+		},
+		{
+			"mint": "ABsZuVSvEW82iqE8YowTE84x3hcusUeqxP6upuCD9Ahz",
+			"amount": 1
+		},
+		{
+			"mint": "4sY8m7omanw9wb7NMEAyDokUYSocRR1ygBxV7tTekoEn",
+			"amount": 1
+		},
+		{
+			"mint": "AdwDhQxdzqwrUBuF2sUpBWsJUFvyyTL6ECHqSd6p1cot",
+			"amount": 1
+		},
+		{
+			"mint": "4iBvvCwmBnjHwBAz6dKu3b5SLUqg9FXiyrABgEiWrRBw",
+			"amount": 1
+		},
+		{
+			"mint": "5wkrykHDVSq6JVN54XCrbWHWzMS63yfetRdfDBhGqUtM",
+			"amount": 1
+		},
+		{
+			"mint": "H3boNQV9mSxp8iaL1b48yD7uiLe1uP1sHkFJF6KVQTWc",
+			"amount": 1
+		},
+		{
+			"mint": "5McxigqBhticMXHCoGmWpjqvRGRKmCMx3reoTr4RXRiK",
+			"amount": 1
+		},
+		{
+			"mint": "98Cv9thq5LPrnHtrPJJ9xm9N4PiSFZ97bUVnHRiHfw7f",
+			"amount": 1
+		},
+		{
+			"mint": "Az2BXNwtq4Du8jUf5a1yfgfwAYM95hu2sD8ZfuZL9E3E",
+			"amount": 1
+		},
+		{
+			"mint": "FajnaZ5wUrk9xY7K86bXp4w8HkPGYMSMCmGRyCqxdcgY",
+			"amount": 1
+		},
+		{
+			"mint": "EEZP1DUnhkZcNyPCis7K2v3XxHXDUrpeW9c81PAWS1HB",
+			"amount": 1
+		},
+		{
+			"mint": "EmfR7YbbaaDqse1C9zBsJEgo876ko3twDtLbrthoNTpA",
+			"amount": 1
+		},
+		{
+			"mint": "4pc9hoEj735gSTqGdJQS4adtjSAwupapx2igV5VbeKmQ",
+			"amount": 1
+		},
+		{
+			"mint": "DVPcSoEKJavgxKBgYfr8W9AWR4Y8CGX9rVvfamheqmon",
+			"amount": 1
+		},
+		{
+			"mint": "8NmfDdCB96vBJ5khFpwrj4Ubkd6fAruEmqQAyPEo7rDF",
+			"amount": 1
+		},
+		{
+			"mint": "Dy56rabMTZDrnaTDuvG72fvyAcJcGXc8tkpkTAcNZZ6V",
+			"amount": 1
+		},
+		{
+			"mint": "2EAWsRCCbtUF2jM4avCxYwnPNUzefCpwfvjKd8XL7LkV",
+			"amount": 1
+		}
+	]
+}

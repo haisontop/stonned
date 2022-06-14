@@ -1,0 +1,16 @@
+[programs.localnet]
+all_staking = "4PsYfZSJoGZc4AM1wNhqKjQea83PUtnRBoLwPBPfgSu2"
+
+[registry]
+url = "https://psytrbhymqlkfrhudd.dev.genesysgo.net:8899/"
+
+[provider]
+cluster = "localnet"
+wallet = "/Users/matthiasschaider/config/solana/sac-staking.json"
+
+[features]
+anchor-debug = ["anchor-syn/anchor-debug"]
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+initProgram = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 ./scripts/init.ts"

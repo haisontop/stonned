@@ -69,10 +69,6 @@ export const NAV_ITEMS: Array<NavItem> = [
     href: '/puff',
   },
   {
-    label: 'Careers',
-    href: '/careers',
-  },
-  {
     label: 'ALL Blue',
     href: 'https://allblue.dev/',
     isExternal: true,

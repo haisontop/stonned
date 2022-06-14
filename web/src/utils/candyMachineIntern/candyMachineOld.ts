@@ -8,7 +8,6 @@ import axios from 'axios'
 import asyncBatch from 'async-batch'
 import { collections } from '../../config/collectonsConfig'
 import _ from 'lodash'
-import { getBaseUrl } from '../../config/config'
 
 export const CANDY_MACHINE_PROGRAM = new anchor.web3.PublicKey(
   'cndyAnrLdpjq1Ssp1z8xxDsB8dxe7u4HL5Nxi2K5WXZ'
@@ -248,6 +247,7 @@ export async function getNFTsForOwnerOld({
   allMints?: string[]
   filterCollection?: string[]
 }) {
+  
   let tokenAccounts = (
     await connection.getParsedTokenAccountsByOwner(ownerAddress, {
       programId: TOKEN_PROGRAM_ID,
@@ -257,7 +257,10 @@ export async function getNFTsForOwnerOld({
   tokenAccounts = tokenAccounts.filter((tokenAccount) => {
     const tokenAmount = tokenAccount.account.data.parsed.info.tokenAmount
 
-    return tokenAmount.amount == '1' && tokenAmount.decimals == '0'
+    return (
+      tokenAmount.amount == '1' &&
+      tokenAmount.decimals == '0'
+    )
   })
 
   const nfts = (
@@ -291,14 +294,7 @@ export async function getNFTsForOwnerOld({
           )
             return null
 
-          const dataRes = true
-            ? await axios.get(getBaseUrl() + '/api/prox', {
-                params: {
-                  uri: metadata.data.data.uri,
-                },
-              })
-            : await axios.get(metadata.data.data.uri)
-
+          const dataRes = await axios.get(metadata.data.data.uri)
           if (dataRes.status !== 200) return false
           return {
             ...dataRes.data,

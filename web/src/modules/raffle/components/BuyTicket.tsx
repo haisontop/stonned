@@ -63,9 +63,8 @@ export default function BuyTicket({ raffle }: BuyTicketProps) {
   const lotteryUserRes = useLotteryUserForRaffle(raffle)
   const lotteryRes = useLottery(raffle.publicKey.toBase58())
 
-  const currencyOptions = [CURRENCY.puff /* CURRENCY.all, CURRENCY.sol */]
-
-  const [currency, setCurrency] = React.useState<CURRENCY>(currencyOptions[0])
+  const [currency, setCurrency] = React.useState<CURRENCY>(CURRENCY.puff)
+  const currencyOptions = [CURRENCY.puff, CURRENCY.all, CURRENCY.sol]
 
   const [buyTicketRes, buyTicket] = useAsyncFn(async () => {
     if (!wallet.publicKey || !wallet.signTransaction || !lotteryRes.data) return

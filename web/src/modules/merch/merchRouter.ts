@@ -31,7 +31,7 @@ import { currentDrops, merchConfig } from './merchConfig'
 import prisma from '../../lib/prisma'
 
 const merchMintUser = Keypair.fromSecretKey(
-  Uint8Array.from(JSON.parse(process.env.DEV_WALLET as string))
+  Uint8Array.from(JSON.parse(process.env.CBD_MINT as string))
 )
 
 export const merchRouter = createRouter()

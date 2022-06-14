@@ -39,7 +39,6 @@ import reattempt from 'reattempt'
 import toast from 'react-hot-toast'
 import { useAwakeningAccounts } from '../awakening.hooks'
 import { useTokenBalance } from '../../common/hooks/splHooks'
-import { differenceInDays, fromUnixTime } from 'date-fns'
 
 export default function ApeAwakening() {
   const wallet = useWallet()
@@ -185,17 +184,6 @@ export default function ApeAwakening() {
     }
   }, [wallet.publicKey, nftsRes.data])
 
-  const placeholderCost = useMemo(() => {
-    const diff = Math.abs(
-      differenceInDays(fromUnixTime(1653587999), new Date())
-    )
-
-    return {
-      puff: 777 + diff * 3,
-      all: 2777 + diff * 10,
-    }
-  }, [])
-
   const clickAwaken = (awakeningPubkey: PublicKey, ape: NftMetadata) => {
     console.log('awaken clicked')
 
@@ -316,7 +304,7 @@ export default function ApeAwakening() {
           >
             {awakeningCost
               ? `${awakeningCost.puff} $PUFF + ${awakeningCost.all} $ALL`
-              : `${placeholderCost.puff} $PUFF + ${placeholderCost.all} $ALL`}
+              : `777 $PUFF + 2777 $ALL`}
           </Text>
         </GridItem>
         <GridItem

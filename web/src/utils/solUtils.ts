@@ -143,13 +143,11 @@ export async function getNftWithMetadata(
 
   const baseUrl = getBaseUrl()
 
-  const metadataRes = true
-    ? await axios.get(baseUrl + '/api/prox', {
-        params: {
-          uri: chainMetadata.data.data.uri,
-        },
-      })
-    : await axios.get(chainMetadata.data.data.uri)
+  const metadataRes = await axios.get(baseUrl + '/api/prox', {
+    params: {
+      uri: chainMetadata.data.data.uri,
+    },
+  })
 
   /*  let uri = chainMetadata.data.data.uri.replace(
     'https://ipfs.io',

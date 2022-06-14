@@ -1,5 +1,4 @@
 import { PublicKey } from '@solana/web3.js'
-import { differenceInDays, fromUnixTime } from 'date-fns'
 import { NftMetadata } from '../utils/nftmetaData.type'
 import {
   EAwakenedType,
@@ -93,11 +92,9 @@ export const getNukedAwakeningCost = (role: NukedRole) => {
   const puffNeeded = puffCost[role]
   const allNeeded = allCost[role]
 
-  const diff = Math.abs(differenceInDays(fromUnixTime(1653587999), new Date()))
-
   return {
-    puff: puffNeeded + diff * 3,
-    all: allNeeded + diff * 10,
+    puff: puffNeeded,
+    all: allNeeded,
   }
 }
 

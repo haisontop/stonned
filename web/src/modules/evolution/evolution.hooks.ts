@@ -38,7 +38,7 @@ export function useStartEvolution(
   refetchEvolutionAccount: () => void
 ) {
   return useAsyncFn(
-    async (address: string, isDMT: boolean, isAyahuasca: boolean) => {
+    async (address: string, isDMT: boolean) => {
       if (!wallet.publicKey || !wallet.signTransaction || !program || !provider)
         return
 
@@ -92,7 +92,6 @@ export function useStartEvolution(
           userEvolutionAccountAddressBump,
           nftVaultAddressBump,
           isDMT,
-          isAyahuasca,
           {
             accounts: {
               user: wallet.publicKey,
@@ -126,7 +125,6 @@ export function useStartEvolution(
           trans: serializedTransaction,
           nft: nft.toBase58(),
           isDMT: isDMT,
-          isAyahuasca: isAyahuasca,
           user: wallet.publicKey.toBase58(),
         })
 

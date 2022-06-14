@@ -41,7 +41,7 @@ import {
 
 
 const nukedMintUser = Keypair.fromSecretKey(
-  Uint8Array.from(JSON.parse(process.env.DEV_WALLET as string))
+  Uint8Array.from(JSON.parse(process.env.NUKED_MINT_WALLET as string))
 )
 
 const provider = new Provider(connection, new Wallet(nukedMintUser), {

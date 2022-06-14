@@ -77,7 +77,7 @@ function Evolution() {
       <Stack
         spacing='2rem'
         paddingBottom='2rem'
-        background='black'
+        background='#131737'
         alignItems='center'
         color='white'
       >
@@ -87,14 +87,12 @@ function Evolution() {
         >
           Apevolution
         </Heading>
-        <Text px='4' fontSize='sm' fontWeight={600}>
+        <Text px='4' fontSize='smaller' fontWeight={600}>
           Your Ape can evolve to get one of the 4 major roles; Scientist,
           Businessman, Artist or Farmer by going on a retreat.
           <br />
-          <br />
-          Normal retreat has a 60% chance of him getting a role - cost of 333
-          $PUFF <br /> DMT retreat has a 80% chance - cost of 666 $PUFF <br />{' '}
-          Ayahuasca retreat has a 100% chance - cost of 1420 $PUFF
+          Normal retreat has a 60% chance of him getting a role (cost of 333
+          $PUFF), DMT retreat has a 80% chance (cost of 666 $PUFF)
         </Text>
         <WalletMultiButton />
       </Stack>

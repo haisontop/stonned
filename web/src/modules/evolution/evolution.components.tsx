@@ -46,9 +46,6 @@ export function SacNftCard({
     refetchEvolutionAccounts
   )
 
-  const [startAyahuascaEvolutionRes, startAyahuascaEvolution] =
-    useStartEvolution(provider, wallet, program, refetchEvolutionAccounts)
-
   const nft = evolutionAccount
 
   const role = useMemo(() => {
@@ -104,32 +101,20 @@ export function SacNftCard({
               size='sm'
               fontSize='0.75rem'
               colorScheme='gray'
-              border='none'
               mt={2}
-              onClick={(e) => startEvolution(nft.mint, false, false)}
+              onClick={(e) => startEvolution(nft.mint, false)}
             >
-              Send on Retreat (60%)
+              Send on Retreat
             </Button>
             <Button
               isLoading={startDMTEvolutionRes.loading}
               size='sm'
               fontSize='0.75rem'
-              colorScheme='gray'
-              border='none'
-              mt={2}
-              onClick={(e) => startDMTEvolution(nft.mint, true, false)}
-            >
-              Send on DMT Retreat (80%)
-            </Button>
-            <Button
-              isLoading={startAyahuascaEvolutionRes.loading}
-              size='sm'
-              fontSize='0.75rem'
               colorScheme='teal'
               mt={2}
-              onClick={(e) => startAyahuascaEvolution(nft.mint, false, true)}
+              onClick={(e) => startDMTEvolution(nft.mint, true)}
             >
-              Send on Ayahuasca Retreat (100%)
+              Send on DMT Retreat
             </Button>
           </Stack>
         </Box>
@@ -244,7 +229,7 @@ export function SacOnRetreat({
             </HStack>
             {new Date().getTime() > revealDate.getTime() ? (
               <Stack>
-                <Heading textAlign='center' size='sm' color='gray.500'>
+                <Heading textAlign='center' size='md' color='gray.500'>
                   Ready to reveal!
                 </Heading>
                 <Button
@@ -267,10 +252,10 @@ export function SacOnRetreat({
               </Stack>
             ) : (
               <Stack justifyContent='center' d='flex' spacing={0}>
-                <Heading size='sm' color='gray.500' textAlign='center'>
+                <Heading size='md' color='gray.500' textAlign='center'>
                   Ready To Reveal In
                 </Heading>
-                <Heading size='md' color='gray.700' textAlign='center'>
+                <Heading size='lg' color='gray.700' textAlign='center'>
                   <Countdown daysInHours={true} date={revealDate} />
                 </Heading>
               </Stack>

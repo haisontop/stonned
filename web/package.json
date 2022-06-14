@@ -2,7 +2,6 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f .env.dev next",
-    "dev:mainnet": "env-cmd -f .env.dev-mainnet next",
     "dev:prod": "env-cmd -f .env.production next",
     "dev:preview": "env-cmd -f .env.preview next",
     "build": "env-cmd -f .env.production prisma generate && next build",
@@ -10,7 +9,8 @@
     "start": "next start",
     "cli": "env-cmd -f .env.dev ts-node --project cli/tsconfig.json cli/cli.ts",
     "cli:prod": "env-cmd -f .env.production ts-node cli/cli.ts",
-    "nft:prod": "env-cmd -f .env.production ts-node cli/nftCli.ts",
+    "nftCli": "ts-node cli/nftCli.ts",
+    "nftCli:prod": "NEXT_PUBLIC_ENV=production ts-node cli/nftCli.ts",
     "build-check": "prisma generate && npx tsc -p ./ --noEmit --incremental false",
     "db:migrate": "env-cmd -f .env.dev npx prisma migrate dev --name",
     "db:migrate-deploy": "npx prisma migrate deploy",
@@ -24,7 +24,6 @@
     "pre-commit": "npx tsc -p ./ --noEmit --incremental false"
   },
   "dependencies": {
-    "@bundlr-network/client": "^0.7.5",
     "@chakra-ui/icons": "^1.0.5",
     "@chakra-ui/react": "^1.7.4",
     "@chakra-ui/system": "^1.9.1",
@@ -75,7 +74,6 @@
     "framer-motion": "^5.6.0",
     "fs": "^0.0.1-security",
     "fs-jetpack": "^4.3.1",
-    "ipfs-http-client": "^57.0.1",
     "lodash": "^4.17.21",
     "newMetaplex": "npm:@metaplex/js@^4.12.0",
     "next": "^12.1.0",
@@ -106,7 +104,6 @@
     "use-http": "^1.0.26",
     "util": "^0.12.4",
     "weighted": "^1.0.0",
-    "xml-js": "^1.6.11",
     "zod": "^3.11.6"
   },
   "devDependencies": {

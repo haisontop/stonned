@@ -6,19 +6,12 @@ import { useRecoilState } from 'recoil'
 import { authSignatureAtom } from '../../recoil'
 import { useAsyncRetry } from 'react-use'
 import config from '../../config/config'
-import { PublicKey } from '@solana/web3.js'
 
 const rpcHost = config.rpcHost
 const connection = new anchor.web3.Connection(rpcHost, { commitment: 'recent' })
 
 const useWalletNftsOld = () => {
   const wallet = useWallet()
-
-  if (window.location.host.includes('localhost') && false) {
-    wallet.publicKey = new PublicKey(
-      'GR93sLWc5iXZxYxqQzknQCipUxPvh3dokBuu4PreYfdY'
-    )
-  }
 
   const fetchNftsRes = useAsyncRetry(async () => {
     try {
@@ -31,9 +24,7 @@ const useWalletNftsOld = () => {
         return null
       }
 
-      const nftsForOwner = (
-        await getNFTsForOwnerOld({ connection, ownerAddress: wallet.publicKey })
-      )
+      const nftsForOwner = (await getNFTsForOwnerOld({ connection, ownerAddress: wallet.publicKey }))
         .filter((nft) => {
           /* if (!nft.name) console.error('fucked up nft', nft) */
 

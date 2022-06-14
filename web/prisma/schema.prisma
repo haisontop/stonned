@@ -206,15 +206,13 @@ model AwakeningUpdateModel {
   newMetadata String
 }
 
-model AwakeningBotModel {
-  id Int
-  nft String
-  nftName String
-  creator String
-
-  newMP4Link String
-  hasBeenPosted Boolean @default(false)
-  hasBeenUpdated Boolean @default(false)
-
-  @@id([id, creator])
+model Roadmap {
+  id Int  @id @default(autoincrement())
+  title String
+  image String @default("")
+  state String @default("")
+  description String
+  isLarge Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
 }

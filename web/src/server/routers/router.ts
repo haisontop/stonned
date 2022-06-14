@@ -13,8 +13,8 @@ import { merchRouter } from '../../modules/merch/merchRouter'
 import { lotteryRouter } from '../../modules/raffle/lotteryRouter'
 import { cicadaRouter } from '../../modules/cicada/cicadaRouter'
 import { eventRouter } from '../../modules/events/eventRouter'
-import { jobRouter } from '../../modules/jobs/jobRouter'
 import { awakeningRouter } from '../../modules/awakening/awakeningRouter'
+import { roadmapRouter } from '../../modules/roadmap/roadmapRouter'
 
 /**
  * Create your application's root router
@@ -44,6 +44,6 @@ export const appRouter = createRouter()
   .merge('cicada.', cicadaRouter)
   .merge('events.', eventRouter)
   .merge('awakening.', awakeningRouter)
-  .merge('jobs.', jobRouter)
+  .merge('roadmap.', roadmapRouter)
 
 export type AppRouter = typeof appRouter

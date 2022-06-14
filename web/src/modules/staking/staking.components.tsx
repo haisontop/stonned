@@ -76,6 +76,8 @@ export const StakedNft: React.FC<{
     return ''
   }, [stakingAccount])
 
+  console.log({ shockwaveOrAwakened })
+
   const { value: reward } = useAsync(
     async () =>
       getRewardForNft(new PublicKey(stakingAccount.stakeAccount.token)),
@@ -306,6 +308,10 @@ export function UnstakedNft({
     async () => getAllRewardForNft(new PublicKey(stakingAccount.mint)),
     [stakingAccount]
   )
+
+  console.log({ shockwaveOrAwakened, reward, allReward })
+
+  console.log('stakingAccount', stakingAccount)
 
   return (
     <Box p={['3', '4']}>

@@ -38,7 +38,6 @@ import {
 import {
   getNftWithMetadata,
   getTokenAccount,
-  loadWalletFromFile,
   pub,
   sendAndConfirmTransaction,
   sendTransaction,
@@ -73,7 +72,6 @@ import { awakeningProgram } from '../src/modules/awakening/awakeningConfig'
 import { stringify } from 'csv/sync'
 import path from 'path'
 import { NftMetadata } from '../src/utils/nftmetaData.type'
-import { getBundlr } from '../src/utils/bundlr'
 
 const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey(
   'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s'
@@ -244,101 +242,6 @@ program.command('checkCicadaUser').action(async () => {
   console.log(
     'nfts',
     nfts.map((n) => n.nft.pubkey.toBase58())
-  )
-})
-
-program
-  .command('uploadMp4s')
-  .requiredOption('-k, --keypair <path>', `Solana wallet location`)
-  .argument('<directory>', 'Directory containing images named from 0-n')
-  .action(async (directory, e, cmd) => {
-    const { keypair } = cmd.opts()
-
-    const mp4s = jetpack.list(directory)!.filter((f) => f.endsWith('.mp4'))
-
-    const size = _.sum(
-      mp4s.map((m) => jetpack.inspect(path.join(directory, m))?.size)
-    )
-
-    console.log('size', size)
-
-    console.log('mp4s', mp4s.length)
-
-    const devWallet = loadWalletFromFile(keypair)
-
-    const bundlr = getBundlr(devWallet)
-
-    const balance = await bundlr.getLoadedBalance()
-
-    console.log('balance', balance.toNumber())
-
-    const cost = await bundlr.utils.getPrice('solana', size)
-
-    const needed = cost.minus(balance)
-
-    console.log(`funding ${needed.dividedBy(LAMPORTS_PER_SOL).toString()} Sol`)
-
-    await bundlr.fund(needed)
-
-    return
-    await asyncBatch(
-      mp4s,
-      async (mp4) => {
-        const id = Number(mp4.split('.')[0])
-
-        console.log(`${id}: started`)
-
-        if (
-          await prisma.awakeningBotModel.findUnique({
-            where: {
-              id_creator: {
-                id: id,
-                creator: nukedCollection.creator,
-              },
-            },
-          })
-        ) {
-          console.log(`${id}: already uploaded`)
-
-          return
-        }
-
-        const res = await bundlr.uploadFile(path.join(directory, mp4))
-
-        if (isNaN(id)) throw new Error('could not infer Number')
-
-        const link = `https://arweave.net/${res.data.id}`
-
-        console.log('link', link)
-
-        await prisma.awakeningBotModel.create({
-          data: {
-            id: id,
-            creator: nukedCollection.creator,
-            newMP4Link: link,
-            nft: '',
-            nftName: '',
-          },
-        })
-      },
-      1
-    )
-  })
-
-program.command('tryAwakeningBot').action(async () => {
-  await axios.post(
-    'https://sa-awakening-api.herokuapp.com/submit',
-    {
-      image_url:
-        'https://arweave.net/2A3DiUucgrLoTsI5UpXkaPhbMl403a3YVan1GuE1INI?ext=mp4',
-      token_name: 'Nuked Ape #69',
-      awekening_members: 12,
-    },
-    {
-      headers: {
-        'x-api-key': 'eiWee8ep9due4deeshoa8Peichai8Eih',
-      },
-    }
   )
 })
 
@@ -856,58 +759,6 @@ program.command('awakeningSnapshot').action(async (e) => {
       { header: true }
     )
   )
-})
-
-program.command('snapshotAllAwakened').action(async (e) => {
-  const allNukedOfflineMeta = await Metadata.findMany(connection, {
-    creators: [nuked.creator],
-  })
-
-  const allNukedMeta = await asyncBatch(
-    allNukedOfflineMeta,
-    async (meta) => {
-      const metadata = await getNftWithMetadata(pub(meta.data.mint))
-
-      return metadata
-    },
-    5
-  )
-
-  const allAwakenendApes = allNukedMeta.filter((a) =>
-    a.attributes.find((a) => a.trait_type == 'Awakened' && a.value == 'Yes')
-  )
-
-  let awakeningAccounts = await awakeningProgram.account.awakening.all()
-
-  console.log('allAwakenendApes', allAwakenendApes.length)
-
-  console.log('onAwakening', awakeningAccounts.length)
-
-  /* const onAwakeningApes = await asyncBatch(
-    allNukedOfflineMeta,
-    async (meta) => {
-      const metadata = await getNftWithMetadata(pub(meta.data.mint))
-
-      return metadata
-    },
-    10
-  )
-
-  awakeningAccounts = awakeningAccounts.sort(
-    (a, b) => a.account.start.toNumber() - b.account.start.toNumber()
-  )
-
-  jetpack.write(
-    path.join(__dirname, './assets', 'awakeningAccounts.csv'),
-    stringify(
-      awakeningAccounts.map((a, i) => ({
-        count: i,
-        start: new Date(a.account.start.toNumber() * 1000).toLocaleString(),
-        nft: a.account.mint.toBase58(),
-      })),
-      { header: true }
-    )
-  ) */
 })
 
 program.command('snapshotHolders').action(async (e) => {

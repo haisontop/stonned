@@ -37,17 +37,6 @@ const backendUser = loadWallet(process.env.PROGRAM_SIGNER!)
 
 const nukedSigner = loadWallet(process.env.NUKED_WALLET!)
 
-const oneOutOfOnes: Record<string, number | undefined> = {
-  'Albert Einstein': 6000,
-  'White Walker': 6001,
-  'Mr Puff': 6002,
-  'yūrei 幽霊': 6003,
-  'Jimmy the Nuked Hero': 6004,
-  'Nuked Twins': 6005,
-  'Marie Curie': 6006,
-  'Thay-Lung': 6007,
-}
-
 export const awakeningRouter = createRouter()
   .mutation('startBreed', {
     input: z.object({
@@ -153,7 +142,7 @@ export const awakeningRouter = createRouter()
       const nuked = await getNftWithMetadata(awakeningAccount.mint)
       const isNormal = nuked.name.includes('Nuked Ape #')
 
-      let id = isNormal ? Number(nuked.name.split('#')[1]) - 1 : oneOutOfOnes[nuked.name]
+      let id = isNormal ? Number(nuked.name.split('#')[1]) - 1 : undefined
 
       const newMetadata = await prisma.awakeningMeta.findUnique({
         where: {
@@ -192,7 +181,16 @@ export const awakeningRouter = createRouter()
         }))
       )
 
-      
+      const oneOutOfOnes: Record<string, number | undefined> = {
+        'Albert Einstein': 6000,
+        'White Walker': 6001,
+        'Mr Puff': 6002,
+        'yūrei 幽霊': 6003,
+        'Jimmy the Nuked Hero': 6004,
+        'Nuked Twins': 6005,
+        'Marie Curie': 6006,
+        'Thay-Lung': 6007,
+      }
 
       const nuked = await getNftWithMetadata(awakeningAccount.mint)
 
@@ -202,23 +200,23 @@ export const awakeningRouter = createRouter()
         ? Number(nuked.name.split('#')[1]) - 1
         : oneOutOfOnes[nuked.name]
 
-      if (id == undefined || id == null)
+      if (!id)
         throw new Error(
-          'There was an error while updating the metadata. Please try again later'
+          'There was an error while updateing medata. Please try again later'
         )
 
       const newMetadata = await prisma.awakeningMeta.findUnique({
         where: {
           id_creator: {
             creator: nukedCollection.creator,
-            id,
+            id: id!,
           },
         },
       })
 
       if (!newMetadata)
         throw new Error(
-          'There was an error while updating the metadata. Please try again later'
+          'There was an error while updateing medata. Please try again later'
         )
 
       const updateInstr = await updateMetadata(

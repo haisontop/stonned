@@ -16,7 +16,6 @@ import { sendTransaction, sleep } from '../../../utils/utils'
 import fetch from 'node-fetch'
 import { getMetadataForMint } from '../../../utils/splUtils'
 import reattempt from 'reattempt'
-import { getBundlr } from '../../../utils/bundlr'
 
 const backendUser = Keypair.fromSecretKey(
   Uint8Array.from(JSON.parse(process.env.PROGRAM_SIGNER as string))
@@ -76,11 +75,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       console.log('after trans')
 
-      await reattempt.run({ times: 3 }, async () => {
-        await connection.confirmTransaction(tx)
-      })
-
-      /* try {
+      try {
         const updateMetadataRes = await updateMetadata(
           puffUser,
           connection,
@@ -118,13 +113,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             },
           }
         )
-        
         console.log('updateEvolution tx', updateEvolutionRes)
         await connection.confirmTransaction(updateEvolutionRes, 'recent')
       } catch (e: any) {
         console.timeEnd('startEvolution')
         console.error('error in updateMetadata', e)
-      } */
+      }
 
       res.json({ success: true })
 
@@ -137,110 +131,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 export async function updateMetadata(
-  walletKeyPair: Keypair,
-  connection: Connection,
-  mint: string,
-  isDmt: boolean,
-  env: web3.Cluster
-) {
-  console.log('in upload Metadata')
-
-  const onChainMetadata = await getMetadataForMint(mint)
-  console.log(
-    'updating, name=',
-    onChainMetadata.data.name,
-    'mint',
-    mint,
-    'isDMT',
-    isDmt
-  )
-  const oldMetadataUri = onChainMetadata.data.uri
-  const oldMetadataRes = await axios.get(oldMetadataUri)
-
-  const wallet = new Wallet(walletKeyPair)
-
-  const rolesDistribution = {
-    normal: {
-      None: 0.4,
-      Businessman: 0.15,
-      Scientist: 0.15,
-      Farmer: 0.15,
-      Artist: 0.15,
-    },
-    dmt: {
-      None: 0.2,
-      Businessman: 0.2,
-      Scientist: 0.2,
-      Farmer: 0.2,
-      Artist: 0.2,
-    },
-    always: {
-      Businessman: 0.25,
-      Scientist: 0.25,
-      Farmer: 0.25,
-      Artist: 0.25,
-    },
-  }
-
-  const breakdownToUse = isDmt
-    ? rolesDistribution.dmt
-    : rolesDistribution.normal
-
-  const newRole = weighted.select(breakdownToUse)
-  console.log('newRole', newRole)
-
-  if (newRole === 'None') {
-    return false
-  }
-
-  const metadataToUpdate = oldMetadataRes.data
-  for (const attr of metadataToUpdate.attributes) {
-    if (attr.trait_type === 'Role') {
-      attr.value = newRole
-    }
-  }
-
-  const metadataBuffer = Buffer.from(JSON.stringify(metadataToUpdate))
-
-  console.log('before arweaveUpload')
-
-  const { link, identifier } = await reattempt.run(
-    { times: 3, delay: 1000 },
-    async () => {
-      const bundlr = getBundlr(walletKeyPair)
-
-      const balance = await bundlr.getLoadedBalance()
-
-      const cost = await bundlr.utils.getPrice(
-        'solana',
-        metadataBuffer.byteLength
-      )
-
-      const needed = cost.minus(balance)
-
-      await bundlr.fund(needed)
-
-      const res = await bundlr.uploader.upload(metadataBuffer)
-
-      return {
-        link: `https://arweave.net/${res.data.id}`,
-        identifier: res.data.id,
-      }
-
-      return await arweaveUpload({
-        walletKeyPair,
-        connection,
-        metadataBuffer,
-        metadata: metadataToUpdate,
-        env,
-      })
-    }
-  )
-
-  return { identifier, newRole }
-}
-
-export async function updateMetadataOld(
   walletKeyPair: Keypair,
   connection: Connection,
   mint: string,

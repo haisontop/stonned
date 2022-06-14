@@ -1,8 +1,9 @@
-import React from 'react'
-import Roadmaps from '../../modules/roadmap/Roadmaps'
+import React from "react";
+import OurJourney from "../../modules/roadmap/OurJourney";
+import Roadmaps from "../../modules/roadmap/Roadmaps";
 
 const RoadmapsPage = () => {
-  return <Roadmaps />
-}
+  return <Roadmaps />;
+};
 
-export default RoadmapsPage
+export default RoadmapsPage;

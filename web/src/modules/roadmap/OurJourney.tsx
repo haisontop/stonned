@@ -12,7 +12,7 @@ import React from "react";
 
 export default function OurJourney() {
   return (
-    <Box mt={["2rem", "10.25rem", "10.25rem"]}>
+    <Box mt={["2rem", "10.25rem", "10.25rem"]} mb="9rem">
       <Text
         as="h1"
         color="#000"

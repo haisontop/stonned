@@ -19,6 +19,7 @@ import { useAllRoadmaps } from "./roadmapHooks";
 import { Roadmap } from "./types";
 import { FaEquals } from "react-icons/fa";
 import OurJourney from "./OurJourney";
+import OutFeature from "./OutFeature";
 
 const Roadmaps = () => {
   const [selectedCollection, setSelectedCollection] =
@@ -178,6 +179,7 @@ const Roadmaps = () => {
             Our Feature
           </Heading>
           {}
+          <OutFeature />
           <Grid
             templateColumns={[
               "repeat(1, 1fr)",
@@ -208,7 +210,7 @@ const Roadmaps = () => {
             )}
           </Grid>
         </Stack>
-        <Box mt="10rem" mb="6rem">
+        <Box mt={["2rem", "70rem"]} mb="6rem">
           <Text
             textAlign={"center"}
             fontSize="1.25rem"

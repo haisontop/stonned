@@ -173,6 +173,7 @@ const Roadmaps = () => {
             fontSize={{ base: "1rem", lg: "1.5rem" }}
             transition="all .2s ease-in-out"
             mb="2.5rem"
+            textAlign="center"
           >
             Our Feature
           </Heading>

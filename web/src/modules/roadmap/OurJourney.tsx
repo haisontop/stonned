@@ -13,7 +13,15 @@ import React from "react";
 export default function OurJourney() {
   return (
     <Box mt={["2rem", "10.25rem", "10.25rem"]}>
-      <Text as="h1" textAlign="center" fontSize="2.3rem" fontWeight="bold">
+      <Text
+        as="h1"
+        color="#000"
+        fontWeight={700}
+        textAlign="center"
+        fontSize={{ base: "1rem", lg: "1.5rem" }}
+        transition="all .2s ease-in-out"
+        mb="2.5rem"
+      >
         Our Journey
       </Text>
       <Stack

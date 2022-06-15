@@ -11,10 +11,10 @@ export default function OutFeature() {
         pb="1.438rem"
         borderRadius="md"
         w={["100%", "21.875rem"]}
-        position={["static", "absolute"]}
+        position={["static", "static", "absolute"]}
         left="20%"
         top="50px"
-        mt={["1rem", "0rem"]}
+        mt={["1rem", "1rem", "0rem"]}
         boxShadow="md"
       >
         <Text as="p" fontSize="1.25rem" fontWeight="semibold">
@@ -29,10 +29,11 @@ export default function OutFeature() {
         px="2rem"
         py="1.60rem"
         borderRadius="md"
-        position={["static", "absolute"]}
+        position={["static", "static", "absolute"]}
         top="0%"
         right="10"
-        mt={["1rem", "0rem"]}
+        w={["100%", "50%", "30%"]}
+        mt={["1rem", "1rem", "0rem"]}
         boxShadow="md"
       >
         <Image src="/images/rectangle.png" mx="auto" w="100%" h="105px" />
@@ -64,10 +65,11 @@ export default function OutFeature() {
         px="2rem"
         py="1.60rem"
         borderRadius="md"
-        position={["static", "absolute"]}
+        position={["static", "static", "absolute"]}
         top="300"
         left="0"
-        mt={["1rem", "0rem"]}
+        w={["100%", "50%", "30%"]}
+        mt={["1rem", "1rem", "0rem"]}
         boxShadow="md"
       >
         <Image src="/images/rectangle.png" mx="auto" w="100%" h="105px" />
@@ -99,9 +101,10 @@ export default function OutFeature() {
         px="2rem"
         py="1.60rem"
         borderRadius="md"
-        position={["static", "absolute"]}
+        position={["static", "static", "absolute"]}
         top="480"
-        mt={["1rem", "0rem"]}
+        w={["100%", "50%", "30%"]}
+        mt={["1rem", "1rem", "0rem"]}
         left="35%"
         boxShadow="md"
       >
@@ -136,10 +139,10 @@ export default function OutFeature() {
         pb="1.438rem"
         borderRadius="md"
         w={["100%", "21.875rem"]}
-        position={["static", "absolute"]}
+        position={["static", "static", "absolute"]}
         right="-10px"
         top="400"
-        mt={["1rem", "0rem"]}
+        mt={["1rem", "1rem", "0rem"]}
         boxShadow="md"
       >
         <Text as="p" fontSize="1.25rem" fontWeight="semibold">
@@ -156,10 +159,10 @@ export default function OutFeature() {
         pb="1.438rem"
         borderRadius="md"
         w={["100%", "21.875rem"]}
-        position={["static", "absolute"]}
+        position={["static", "static", "absolute"]}
         right="-10px"
         top="750"
-        mt={["1rem", "0rem"]}
+        mt={["1rem", "1rem", "0rem"]}
         boxShadow="md"
       >
         <Text as="p" fontSize="1.25rem" fontWeight="semibold">
@@ -176,10 +179,10 @@ export default function OutFeature() {
         pb="1.438rem"
         borderRadius="md"
         w={["100%", "21.875rem"]}
-        position={["static", "absolute"]}
+        position={["static", "static", "absolute"]}
         left="0"
         top="900"
-        mt={["1rem", "0rem"]}
+        mt={["1rem", "1rem", "0rem"]}
         boxShadow="md"
       >
         <Text as="p" fontSize="1.25rem" fontWeight="semibold">
@@ -196,9 +199,9 @@ export default function OutFeature() {
         pb="1.438rem"
         borderRadius="md"
         w={["100%", "21.875rem"]}
-        position={["static", "absolute"]}
+        position={["static", "static", "absolute"]}
         right="30%"
-        mt={["1rem", "0rem"]}
+        mt={["1rem", "1rem", "0rem"]}
         top="1000"
         boxShadow="md"
       >

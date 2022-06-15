@@ -210,7 +210,7 @@ const Roadmaps = () => {
             )}
           </Grid>
         </Stack>
-        <Box mt={["2rem", "70rem"]} mb="6rem">
+        <Box mt={["2rem", "5rem", "70rem"]} mb="6rem">
           <Text
             textAlign={"center"}
             fontSize="1.25rem"

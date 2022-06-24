@@ -10,6 +10,7 @@ import {
   Skeleton,
   Image,
   IconButton,
+  Link,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { MainLayout } from "../../layouts/MainLayout";
@@ -20,6 +21,8 @@ import { Roadmap } from "./types";
 import { FaEquals } from "react-icons/fa";
 import OurJourney from "./OurJourney";
 import OutFeature from "./OutFeature";
+import MOCK_DATA_ROADMAP from "../../constant/MOCK_DATA_ROADMAP";
+import RoadmapsCard from "./RoadmapsCard";
 
 const Roadmaps = () => {
   const [selectedCollection, setSelectedCollection] =
@@ -73,96 +76,15 @@ const Roadmaps = () => {
           columnGap={["1rem", "2rem", "6rem"]}
           rowGap={["1rem"]}
         >
-          <GridItem
-            colSpan={[1]}
-            borderRadius="sm"
-            backgroundColor="lightGery"
-            py={7}
-          >
-            {/* { <Text
-              mt={['1rem', '1rem', '4rem']}
-              fontSize={'0.875rem'}
-              fontWeight={500}
-            >
-              Art
-            </Text>} */}
-            <Image src="/images/rectangle.png" mx="auto" />
-            <Box textAlign="center" mt="6">
-              <Text as="h3" fontSize="20px" fontWeight="bold">
-                NFT Art
-              </Text>
-              <IconButton
-                aria-label="icon-button"
-                icon={<FaEquals />}
-                border="none"
-                textColor="DarkLinghtGrey"
-                backgroundColor="lightGery"
-              />
-              <Text as="h3" fontSize="20px" fontWeight="bold">
-                Louvre Level
-              </Text>
-            </Box>
-          </GridItem>
-          <GridItem
-            colSpan={[1]}
-            borderRadius="sm"
-            backgroundColor="lightGery"
-            py={7}
-          >
-            {/* { <Text
-              mt={['1rem', '1rem', '4rem']}
-              fontSize={'0.875rem'}
-              fontWeight={500}
-            >
-              Art
-            </Text>} */}
-            <Image src="/images/rectangle.png" mx="auto" />
-            <Box textAlign="center" mt="6">
-              <Text as="h3" fontSize="20px" fontWeight="bold">
-                SAC
-              </Text>
-              <IconButton
-                aria-label="icon-button"
-                icon={<FaEquals />}
-                border="none"
-                textColor="DarkLinghtGrey"
-                backgroundColor="lightGery"
-              />
-              <Text as="h3" fontSize="20px" fontWeight="bold">
-                Lifestyle Brand
-              </Text>
-            </Box>
-          </GridItem>
-          <GridItem
-            colSpan={[1]}
-            borderRadius="sm"
-            backgroundColor="lightGery"
-            py={7}
-          >
-            {/* { <Text
-              mt={['1rem', '1rem', '4rem']}
-              fontSize={'0.875rem'}
-              fontWeight={500}
-            >
-              Art
-            </Text>} */}
-            <Image src="/images/rectangle.png" mx="auto" />
-            <Box textAlign="center" mt="6">
-              <Text as="h3" fontSize="20px" fontWeight="bold">
-                ALL Blue
-              </Text>
-              <IconButton
-                aria-label="icon-button"
-                icon={<FaEquals />}
-                border="none"
-                textColor="DarkLinghtGrey"
-                backgroundColor="lightGery"
-              />
-              <Text as="h3" fontSize="20px" fontWeight="bold">
-                Web3 Tech Revolution
-              </Text>
-            </Box>
-          </GridItem>
+          {MOCK_DATA_ROADMAP.map((dt) => (
+            <RoadmapsCard
+              key={dt.id}
+              id={dt.id}
+              title={dt.title}
+              slogan={dt.slogan}
+              details={dt.details}
+            />
+          ))}
         </Grid>
         <OurJourney />
 
@@ -180,6 +102,9 @@ const Roadmaps = () => {
           </Heading>
           {}
           <OutFeature />
+
+          {/********************/}
+
           <Grid
             templateColumns={[
               "repeat(1, 1fr)",
@@ -203,7 +128,7 @@ const Roadmaps = () => {
               </>
             ) : (
               roadmapRes.data.map((roadmap: Roadmap) => (
-                <GridItem key={roadmap.id}>
+                <GridItem key={roadmap.id} id={roadmap.id}>
                   <RoadmapCard roadmap={roadmap} />
                 </GridItem>
               ))

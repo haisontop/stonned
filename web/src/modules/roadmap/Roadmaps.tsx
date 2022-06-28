@@ -22,158 +22,178 @@ import OutFeature from "./OutFeature";
 import RoadmapCard from "./RoadmapCard";
 import { useAllRoadmaps } from "./roadmapHooks";
 import { Roadmap, Vision } from "./types";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 
 interface RoadmapMainCardProps {
   vision: Vision;
   onOpen: (vision: Vision) => void;
   onClose: () => void;
   expanded: boolean;
+  showInitial?: boolean;
 }
 
-const RoadmapMainCard = (props: RoadmapMainCardProps) => {
-  const { vision, onOpen, onClose, expanded } = props;
+const spring = {
+  type: "spring",
+  default: { duration: 0.4 },
+};
 
-  console.log("vision", vision);
+const RoadmapMainCard = (props: RoadmapMainCardProps) => {
+  const { vision, onOpen, onClose, expanded, showInitial } = props;
+
   const variants = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 },
+    expand: {
+      width: "100%",
+      display: "block",
+      transition: { duration: 0 },
+    },
+    hidden: {
+      width: 0,
+      display: "none",
+      transition: { duration: 0 },
+    },
+  };
+
+  const handleExpand = () => {
+    onOpen(vision);
   };
 
   const renderContent = useCallback(() => {
-    if (expanded) {
-      return (
-        <motion.div initial="hidden" animate="visible" variants={variants}>
-          <Box
-            textAlign="center"
-            display="flex"
-            flexDir={"column"}
-            alignItems="center"
-            bgColor={"#F9F9F9"}
-            p={["2.5rem 2.75rem"]}
-            width="100%"
-            position={"relative"}
+    return (
+      <>
+        <motion.div
+          initial="expand"
+          animate={showInitial || expanded ? "expand" : "hidden"}
+          variants={variants}
+        >
+          <motion.div
+            layout
+            transition={spring}
+            style={{ flexShrink: 1, originX: 0, originY: 0 }}
           >
-            <IconButton
-              icon={<CgClose />}
-              aria-label={"Close Expanded Vision"}
-              onClick={onClose}
-              sx={{
-                position: "absolute",
-                top: "0.5rem",
-                right: "0.5rem",
-                border: "unset",
-                background: "transparent",
-              }}
-            ></IconButton>
-            <Grid
-              width="100%"
-              templateColumns={[
-                "repeat(1, 1fr)",
-                "repeat(2, 1fr)",
-                "repeat(9, 1fr)",
-              ]}
-              columnGap={["4.5rem"]}
-            >
-              <GridItem colSpan={[1, 1, 4]} sx={{ position: "relative" }}>
-                <Stack width="100%" alignItems={"flex-end"}>
-                  <Text as="h3" fontSize="20px" fontWeight="bold">
-                    {vision.title}
-                  </Text>
-                  <Box
-                    height={["13.6rem"]}
-                    bgColor="#C4C4C4"
-                    width="100%"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <Text as="h3" fontSize="20px" fontWeight="bold">
-                      Art
-                    </Text>
-                  </Box>
-                </Stack>
-                <Box
-                  color={"rgba(146, 146, 146, 0.3)"}
+            {expanded && !showInitial ? (
+              <Box
+                textAlign="center"
+                display="flex"
+                flexDir={"column"}
+                alignItems="center"
+                bgColor={"#F9F9F9"}
+                p={["2.5rem 2.75rem"]}
+                width="100%"
+                position={"relative"}
+              >
+                <IconButton
+                  icon={<CgClose />}
+                  aria-label={"Close Expanded Vision"}
+                  onClick={onClose}
                   sx={{
                     position: "absolute",
-                    top: "0.3rem",
-                    right: "-2.75rem",
+                    top: "0.5rem",
+                    right: "0.5rem",
+                    border: "unset",
+                    background: "transparent",
                   }}
+                ></IconButton>
+                <Grid
+                  width="100%"
+                  templateColumns={[
+                    "repeat(1, 1fr)",
+                    "repeat(2, 1fr)",
+                    "repeat(9, 1fr)",
+                  ]}
+                  columnGap={["4.5rem"]}
                 >
+                  <GridItem colSpan={[1, 1, 4]} sx={{ position: "relative" }}>
+                    <Stack width="100%" alignItems={"flex-end"}>
+                      <Text as="h3" fontSize="20px" fontWeight="bold">
+                        {vision.title}
+                      </Text>
+                      <Box
+                        height={["13.6rem"]}
+                        bgColor="#C4C4C4"
+                        width="100%"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Text as="h3" fontSize="20px" fontWeight="bold">
+                          Art
+                        </Text>
+                      </Box>
+                    </Stack>
+                    <Box
+                      color={"rgba(146, 146, 146, 0.3)"}
+                      sx={{
+                        position: "absolute",
+                        top: "0.3rem",
+                        right: "-2.75rem",
+                      }}
+                    >
+                      <FaEquals />
+                    </Box>
+                  </GridItem>
+                  <GridItem colSpan={[1, 1, 5]}>
+                    <Stack width="100%" alignItems={"flex-start"}>
+                      <Text
+                        as="h3"
+                        fontSize="20px"
+                        fontWeight="bold"
+                        textAlign="left"
+                      >
+                        {vision.subtitle}
+                      </Text>
+                      <Text as="h3" fontSize={["0.875rem"]} textAlign="left">
+                        {vision.description}
+                      </Text>
+                    </Stack>
+                  </GridItem>
+                </Grid>
+              </Box>
+            ) : (
+              <Box
+                textAlign="center"
+                display="flex"
+                flexDir={"column"}
+                alignItems="center"
+                bgColor={"#F9F9F9"}
+                p={["2rem 2.75rem"]}
+                onClick={handleExpand}
+                _hover={{
+                  cursor: "pointer",
+                }}
+              >
+                <Box
+                  height={["13.6rem"]}
+                  bgColor="#C4C4C4"
+                  width="100%"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Text as="h3" fontSize="20px" fontWeight="bold">
+                    Art
+                  </Text>
+                </Box>
+                <Text as="h3" fontSize="20px" fontWeight="bold" mt="1.5rem">
+                  {vision.title}
+                </Text>
+                <Box my="0.5rem" color={"rgba(146, 146, 146, 0.3)"}>
                   <FaEquals />
                 </Box>
-              </GridItem>
-              <GridItem colSpan={[1, 1, 5]}>
-                <Stack width="100%" alignItems={"flex-start"}>
-                  <Text
-                    as="h3"
-                    fontSize="20px"
-                    fontWeight="bold"
-                    textAlign="left"
-                  >
-                    {vision.subtitle}
-                  </Text>
-                  <Text as="h3" fontSize={["0.875rem"]} textAlign="left">
-                    {vision.description}
-                  </Text>
-                </Stack>
-              </GridItem>
-            </Grid>
-            {/* <Box color={'rgba(146, 146, 146, 0.3)'}>
-              <FaEquals />
-            </Box> */}
-          </Box>
+                <Text as="h3" fontSize="20px" fontWeight="bold">
+                  {vision.subtitle}
+                </Text>
+              </Box>
+            )}
+          </motion.div>
         </motion.div>
-      );
-    } else {
-      return (
-        <Box
-          textAlign="center"
-          display="flex"
-          flexDir={"column"}
-          alignItems="center"
-          bgColor={"#F9F9F9"}
-          p={["2rem 2.75rem"]}
-          onClick={() => onOpen(vision)}
-          _hover={{
-            cursor: "pointer",
-          }}
-        >
-          <Box
-            height={["13.6rem"]}
-            bgColor="#C4C4C4"
-            width="100%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text as="h3" fontSize="20px" fontWeight="bold">
-              Art
-            </Text>
-          </Box>
-          <Text as="h3" fontSize="20px" fontWeight="bold" mt="1.5rem">
-            {vision.title}
-          </Text>
-          <Box my="0.5rem" color={"rgba(146, 146, 146, 0.3)"}>
-            <FaEquals />
-          </Box>
-          <Text as="h3" fontSize="20px" fontWeight="bold">
-            {vision.subtitle}
-          </Text>
-        </Box>
-      );
-    }
+      </>
+    );
   }, [expanded, vision, onOpen, onClose]);
 
   return <>{renderContent()}</>;
 };
 
 const Roadmaps = () => {
-  const [selectedCollection, setSelectedCollection] =
-    useState<string>("genisis");
-  const colorTheme = () => (selectedCollection == "nuked" ? "dark" : "light");
-
   const roadmapRes = useAllRoadmaps();
   const isLoading = roadmapRes.isLoading;
 
@@ -190,7 +210,7 @@ const Roadmaps = () => {
   return (
     <MainLayout
       navbar={{
-        colorTheme: colorTheme(),
+        colorTheme: "light",
         bgTransparent: true,
       }}
     >
@@ -220,73 +240,39 @@ const Roadmaps = () => {
             community and fuck*n dope products.
           </Text>
         </Box>
-        {!!openedVision ? (
-          <Grid
-            templateColumns={["repeat(1, 1fr)"]}
-            mt={["1rem", "1rem", "3rem"]}
-            columnGap={["1rem", "2rem", "6rem"]}
-            rowGap={["1rem"]}
-          >
+        <Grid
+          templateColumns={
+            openedVision
+              ? ["repeat(1, 1fr)"]
+              : ["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]
+          }
+          mt={["1rem", "1rem", "3rem"]}
+          columnGap={["1rem", "2rem", "6rem"]}
+          rowGap={["1rem"]}
+        >
+          {VISION_LIST.map((vision) => (
             <GridItem
-              colSpan={[1]}
+              colSpan={
+                openedVision && openedVision.id === vision.id ? [3] : [1]
+              }
               borderRadius="sm"
               backgroundColor="lightGery"
+              key={vision.id}
             >
               <RoadmapMainCard
-                vision={openedVision}
+                vision={vision}
                 onOpen={handleOpenVision}
                 onClose={handleCloseVision}
-                expanded
+                expanded={!!openedVision && openedVision.id === vision.id}
+                showInitial={!openedVision}
               />
             </GridItem>
-          </Grid>
-        ) : (
-          <Grid
-            templateColumns={[
-              "repeat(1, 1fr)",
-              "repeat(2, 1fr)",
-              "repeat(3, 1fr)",
-            ]}
-            mt={["1rem", "1rem", "3rem"]}
-            columnGap={["1rem", "2rem", "6rem"]}
-            rowGap={["1rem"]}
-          >
-            {VISION_LIST.map((vision) => (
-              <GridItem
-                colSpan={[1]}
-                borderRadius="sm"
-                backgroundColor="lightGery"
-              >
-                <RoadmapMainCard
-                  vision={vision}
-                  onOpen={handleOpenVision}
-                  onClose={handleCloseVision}
-                  expanded={false}
-                />
-              </GridItem>
-            ))}
-          </Grid>
-        )}
-
+          ))}
+        </Grid>
         <OurJourney />
 
-        <Stack mt="2.5rem">
-          <Heading
-            color="#000"
-            fontWeight={700}
-            as="h1"
-            fontSize={{ base: "1rem", lg: "1.5rem" }}
-            transition="all .2s ease-in-out"
-            mb="2.5rem"
-            textAlign="center"
-          >
-            Our Feature
-          </Heading>
-          <OutFeature />
-
-          {/********************/}
-
-          <Grid
+        <OutFeature />
+        {/* <Grid
             templateColumns={[
               "repeat(1, 1fr)",
               "repeat(2, 1fr)",
@@ -314,8 +300,7 @@ const Roadmaps = () => {
                 </GridItem>
               ))
             )}
-          </Grid>
-        </Stack>
+          </Grid> */}
         <Box mt={["2rem", "5rem", "70rem"]} mb="6rem">
           <Text
             textAlign={"center"}
@@ -328,7 +313,7 @@ const Roadmaps = () => {
         </Box>
 
         <Box pos="absolute" bottom="0" left="50%" transform="translateX(-50%)">
-          <Footer theme={colorTheme()}></Footer>
+          <Footer theme={"light"}></Footer>
         </Box>
       </Container>
     </MainLayout>

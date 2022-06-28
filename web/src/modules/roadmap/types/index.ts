@@ -1,11 +1,11 @@
 export interface Roadmap {
-  id: string
-  title: string
+  id: string;
+  title: string;
 }
 
 export interface RoadmapResponse {
-  id: string
-  name: string
+  id: string;
+  name: string;
 }
 
 export interface Vision {
@@ -14,4 +14,13 @@ export interface Vision {
   subtitle: string;
   imageURL?: string;
   description?: string;
+}
+
+export interface Feature {
+  id: string;
+  title: string;
+  description: string;
+  imageURL?: string;
+  largeItem?: boolean;
+  currentState?: "soon";
 }

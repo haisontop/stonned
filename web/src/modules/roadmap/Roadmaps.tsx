@@ -8,21 +8,59 @@ import {
   GridItem,
   Flex,
   Skeleton,
-  Image,
   IconButton,
-  Link,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { FaEquals } from "react-icons/fa";
 import { MainLayout } from "../../layouts/MainLayout";
 import Footer from "../nuked/Footer";
+import OurJourney from "./OurJourney";
+import OutFeature from "./OutFeature";
 import RoadmapCard from "./RoadmapCard";
 import { useAllRoadmaps } from "./roadmapHooks";
 import { Roadmap } from "./types";
-import { FaEquals } from "react-icons/fa";
-import OurJourney from "./OurJourney";
-import OutFeature from "./OutFeature";
-import MOCK_DATA_ROADMAP from "../../constant/MOCK_DATA_ROADMAP";
-import RoadmapsCard from "./RoadmapsCard";
+
+interface RoadmapMainCardProps {
+  title: string;
+  subtitle: string;
+}
+
+const RoadmapMainCard = (props: RoadmapMainCardProps) => {
+  const { title, subtitle } = props;
+
+  return (
+    <Box
+      textAlign="center"
+      display="flex"
+      flexDir={"column"}
+      alignItems="center"
+      bgColor={"#F9F9F9"}
+      p={["2rem 2.75rem"]}
+    >
+      <Box
+        height={["13.6rem"]}
+        bgColor="#C4C4C4"
+        width="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Text as="h3" fontSize="20px" fontWeight="bold">
+          Art
+        </Text>
+      </Box>
+      <Text as="h3" fontSize="20px" fontWeight="bold" mt="1.5rem">
+        {title}
+      </Text>
+      <Box my="0.5rem" color={"rgba(146, 146, 146, 0.3)"}>
+        <FaEquals />
+      </Box>
+      <Text as="h3" fontSize="20px" fontWeight="bold">
+        {subtitle}
+      </Text>
+    </Box>
+  );
+};
 
 const Roadmaps = () => {
   const [selectedCollection, setSelectedCollection] =
@@ -76,15 +114,15 @@ const Roadmaps = () => {
           columnGap={["1rem", "2rem", "6rem"]}
           rowGap={["1rem"]}
         >
-          {MOCK_DATA_ROADMAP.map((dt) => (
-            <RoadmapsCard
-              key={dt.id}
-              id={dt.id}
-              title={dt.title}
-              slogan={dt.slogan}
-              details={dt.details}
-            />
-          ))}
+          <GridItem colSpan={[1]} borderRadius="sm" backgroundColor="lightGery">
+            <RoadmapMainCard title="NFT Art" subtitle="Louvre Level" />
+          </GridItem>
+          <GridItem colSpan={[1]} borderRadius="sm" backgroundColor="lightGery">
+            <RoadmapMainCard title="SAC" subtitle="Lifestyle Brand" />
+          </GridItem>
+          <GridItem colSpan={[1]} borderRadius="sm" backgroundColor="lightGery">
+            <RoadmapMainCard title="ALL Blue" subtitle="Web3 Tech Revolution" />
+          </GridItem>
         </Grid>
         <OurJourney />
 
@@ -100,7 +138,6 @@ const Roadmaps = () => {
           >
             Our Feature
           </Heading>
-          {}
           <OutFeature />
 
           {/********************/}

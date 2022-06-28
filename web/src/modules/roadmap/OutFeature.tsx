@@ -1,5 +1,6 @@
 import { Badge, Box, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import { ArtPlaceholderCard } from "./OurJourney";
 
 export default function OutFeature() {
   return (
@@ -36,7 +37,7 @@ export default function OutFeature() {
         mt={["1rem", "1rem", "0rem"]}
         boxShadow="md"
       >
-        <Image src="/images/rectangle.png" mx="auto" w="100%" h="105px" />
+        <ArtPlaceholderCard />
         <Box w={["100%", "16.25rem"]} mx="auto">
           <Badge
             variant="solid"
@@ -72,7 +73,7 @@ export default function OutFeature() {
         mt={["1rem", "1rem", "0rem"]}
         boxShadow="md"
       >
-        <Image src="/images/rectangle.png" mx="auto" w="100%" h="105px" />
+        <ArtPlaceholderCard />
         <Box w={["100%", "16.25rem"]} mx="auto">
           <Badge
             variant="solid"
@@ -108,7 +109,7 @@ export default function OutFeature() {
         left="35%"
         boxShadow="md"
       >
-        <Image src="/images/rectangle.png" mx="auto" w="100%" h="105px" />
+        <ArtPlaceholderCard />
         <Box w={["100%", "16.25rem"]} mx="auto">
           <Badge
             variant="solid"
